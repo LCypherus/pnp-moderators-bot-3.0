@@ -7,8 +7,7 @@ module.exports = {
     minArgs: 1,
     maxArgs: 1,
     expectedArgs: '<invitelink>',
-    slash: 'both',  
-    testOnly: true,
+    slash: 'both',
     permissions: ['ADMINISTRATOR'],
 
     callback: async ({message, text, interaction, guild}) => {

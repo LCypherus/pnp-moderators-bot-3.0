@@ -32,8 +32,6 @@ client.on('ready', () => {
         testServers: ['833783765699788850']
     })
 
-    Hello
-
     wok.on('databaseConnected', async (connection, state) => {
         console.log(`The connection state to Mongo is "${state}"`)
     })

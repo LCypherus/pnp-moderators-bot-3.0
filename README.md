@@ -27,3 +27,9 @@ You can simply just delete these from your server (after a couple of hours).
 - Set-Invitelink: Places your servers invite link into a database. This link will be provided when doing /invitelink with the P&P Players Bot.
 - Set-Welcome: Adds a welcome text when new players joins to a channel of your choice.
 - simjoin: Simulates a new player joining.
+- Role command: A command to check if a user has a role or to give/remove a role from a user.
+
+## To do
+- Dropdown menu roles
+- Clear/purge command
+- Punishment command with warn, mute, kick, ban

@@ -52,15 +52,14 @@ module.exports = {
         }
     ],
 
-    callback: async ({ args, client, guild }) => {
+    callback: async ({ args, client, guild, channel }) => {
         // Basic variables
         const type = args[0]
         const format = args[1]
         const formatInfo = guild.roles.cache.find(r => r.id === format);
         const formatName = formatInfo.name
         const dm = args[2]
-        const dmInfo = guild.users.cache.find(u => u.id === dm);
-        const dmName = dmInfo.name
+        const dmTag = `<@${args[2]}>`
         const tableName = args.slice(3).join(" ")
         const tableShortName = tableName.match(/(?:^| )(\w)/g).join("").replace(/ /gi, "");
         
@@ -238,18 +237,18 @@ module.exports = {
 	        .setDescription('This is the summary of the new table')
 	        .setThumbnail('https://cdn.discordapp.com/attachments/834882298268221460/840171923093585940/icon.png')
 	        .addFields(
-		        { name: 'Dungeon Master', value: dmName, inline: true },
-	        	{ name: 'Format & type', value: formatName + ' ' + type, inline: true },
+		        { name: 'Dungeon Master', value: dmTag, inline: true },
+	         	{ name: 'Format & type', value: formatName + ' ' + type, inline: true },
                 { name: 'Table Name:', value: tableName, inline: false },
                 { name: 'Table Shorthand', value: tableShortName, inline: true },
                 { name: 'Playersrole', value: tableName + " Player", inline: true },
 	        )
 	        .setFooter('/createtable - Contact L_Cypherus when you\'re having problems with this command.');
 
-        return createtableEmbed
+        channel.send({ embeds: [createtableEmbed] })
 
-        dmChannelId = await dmChannel.id
-        await client.channels.cache.get(dmChannelId).send(`Hello ${dm}, Your table has been created.\n`, {embed: createtableEmbed});
-        
+        // dmChannelId = await dmChannel.id
+        // console.log(dmChannel.id)
+        dmChannel.send({ content: `Hello ${dmTag}, Your table has been created.\n`, embeds: [createtableEmbed] });
     }
 }
